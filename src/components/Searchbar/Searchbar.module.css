@@ -1,0 +1,31 @@
+
+  
+  .searchForm input {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    width: 550px;
+  }
+  
+  .searchButton {
+    /* position: absolute; */
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: rgb(228, 213, 213);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .inputContainer{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(102, 102, 203);
+  }
