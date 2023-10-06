@@ -70,9 +70,6 @@ class App extends Component {
         {this.shouldShowLoadMoreButton() && (
           <Button onLoadMore={this.handleLoadMore} />
         )}
-        {showModal && (
-          <Modal imageUrl={modalImageUrl} onCloseModal={this.handleCloseModal} />
-        )}
       </div>
     );
   }
