@@ -16,7 +16,21 @@ class Modal extends Component {
     `);
 
     instance.show();
-  };
+
+    // Закрытие модального окна при клике на изображение
+    instance.element().querySelector('img').addEventListener('click', () => {
+      instance.close();
+      this.props.onClose();
+    });
+
+    // Закрытие модального окна при нажатии на клавишу ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        instance.close();
+        this.props.onClose();
+      }
+    });
+  }
 
   render() {
     return null;
