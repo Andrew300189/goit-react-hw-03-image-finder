@@ -1,5 +1,5 @@
 import React from 'react';
-import { Audio } from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner'; // Изменили импорт
 
 const Loader = () => {
   return (
@@ -10,6 +10,8 @@ const Loader = () => {
         radius={9}
         color="green"
         ariaLabel="three-dots-loading"
+        wrapperStyle={{ margin: 'auto' }}
+        wrapperClassName="loader-wrapper"
       />
     </div>
   );
