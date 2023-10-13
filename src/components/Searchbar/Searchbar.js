@@ -17,19 +17,21 @@ class Searchbar extends Component {
 
   render() {
     return (
-      <div className={styles.inputContainer}>
-        <header className={styles.searchForm}>
-          <form className={styles.search} onSubmit={this.handleSubmit}>
-            <input
-              className={styles.input}
-              type="text"
-              autoComplete="off"
-              autoFocus
-              value={this.state.query}
-              onChange={this.handleChange}
-            />
-          </form>
-        </header>
+      <div className={styles.Searchbar}>
+        <form className={styles.SearchForm} onSubmit={this.handleSubmit}>
+        <button type="submit" className={styles.SearchFormButton}>
+            <span className={styles.SearchFormButtonLabel}>Search</span>
+          </button>
+          <input
+            className={styles.SearchFormInput}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search"
+            value={this.state.query}
+            onChange={this.handleChange}
+          />
+        </form>
       </div>
     );
   }
