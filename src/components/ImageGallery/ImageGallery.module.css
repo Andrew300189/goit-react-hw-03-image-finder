@@ -1,7 +1,7 @@
 .gallery {
   display: grid;
   max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(4, 1fr); /* Изменено на 4 колонки */
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 16px;
   margin: 20px 10px;
   padding: 0;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Audio } from 'react-loader-spinner';
-import './Loader.module.css';  // Импорт CSS-файла для стилизации лоадера
+import './Loader.module.css';
 
 const Loader = () => (
   <div className="loader-container">

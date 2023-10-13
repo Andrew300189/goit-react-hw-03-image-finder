@@ -47,19 +47,19 @@ class App extends Component {
   
     const url = `${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${perPage}`;
   
-    this.setState({ isLoading: true }); // Устанавливаем isLoading в true при начале загрузки.
+    this.setState({ isLoading: true });
   
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         this.setState((prevState) => ({
           images: [...prevState.images, ...data.hits],
-          isLoading: false, // Устанавливаем isLoading в false после завершения загрузки.
+          isLoading: false,
         }));
       })
       .catch((error) => {
         console.error('Error fetching images:', error);
-        this.setState({ isLoading: false }); // Устанавливаем isLoading в false при возникновении ошибки.
+        this.setState({ isLoading: false });
       });
   };
 
