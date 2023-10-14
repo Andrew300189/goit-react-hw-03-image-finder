@@ -4,6 +4,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import Loader from './Loader/Loader';
+import { getImages } from '../services/api';
 
 class App extends Component {
   state = {
@@ -16,54 +17,51 @@ class App extends Component {
   };
 
   handleSearch = (query) => {
-    this.setState({ images: [], query, page: 1 }, () => {
-      if (query.trim() !== '') {
-        this.fetchImages(query, 1);
-      }
-    });
+    this.setState({ images: [], query, page: 1 });
   };
 
   handleLoadMore = () => {
-    const { query, page } = this.state;
-    if (query.trim() !== '') {
-      this.setState({ page: page + 1 }, () => {
-        this.fetchImages(query, page + 1);
-      });
-    }
+    this.setState((prevState) => {
+      const { query, page } = prevState;
+      if (query.trim() !== '') {
+        return { page: page + 1 };
+      }
+      return null;
+    });
   };
+  
 
   handleOpenModal = (imageUrl) => {
     this.setState({ showModal: true, modalImageUrl: imageUrl, isLoading: true });
   };
-  
+
   handleCloseModal = () => {
     this.setState({ showModal: false, modalImageUrl: '', isLoading: false });
   };
 
-  fetchImages = (query, page) => {
-    const API_KEY = '38721909-f69e4340e26f5a05edebcf59f';
-    const BASE_URL = 'https://pixabay.com/api/';
-    const perPage = 12;
+  componentDidUpdate(prevState) {
+    const { query, page } = this.state;
   
-    const url = `${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${perPage}`;
+    if (query !== prevState.query || page !== prevState.page) {
+      if (query.trim() !== '') {
+        this.setState({ isLoading: true });
   
-    this.setState({ isLoading: true });
-  
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState((prevState) => ({
-          images: [...prevState.images, ...data.hits],
-          isLoading: false,
-        }));
-      })
-      .catch((error) => {
-        console.error('Error fetching images:', error);
-        this.setState({ isLoading: false });
-      });
-  };
+        getImages(query, page)
+          .then((data) => {
+            this.setState((prevState) => ({
+              images: [...prevState.images, ...data.hits],
+            }));
+          })
+          .catch((error) => {
+            console.error('Error fetching images:', error);
+          })
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      }
+    }
+  }  
 
-  
   shouldShowLoadMoreButton = () => {
     return this.state.images.length > 0 && this.state.query.trim() !== '';
   };
