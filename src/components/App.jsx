@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({ showModal: false, modalImageUrl: '', isLoading: false });
   };
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(_, prevState) {
     const { query, page } = this.state;
   
     if (query !== prevState.query || page !== prevState.page) {
@@ -60,7 +60,7 @@ class App extends Component {
           });
       }
     }
-  }  
+  }    
 
   shouldShowLoadMoreButton = () => {
     return this.state.images.length > 0 && this.state.query.trim() !== '';
