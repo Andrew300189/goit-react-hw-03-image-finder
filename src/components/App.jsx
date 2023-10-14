@@ -29,7 +29,6 @@ class App extends Component {
       return null;
     });
   };
-  
 
   handleOpenModal = (imageUrl) => {
     this.setState({ showModal: true, modalImageUrl: imageUrl, isLoading: true });
@@ -60,8 +59,8 @@ class App extends Component {
           });
       }
     }
-  }    
-
+  }
+      
   shouldShowLoadMoreButton = () => {
     return this.state.images.length > 0 && this.state.query.trim() !== '';
   };
